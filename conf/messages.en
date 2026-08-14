@@ -218,3 +218,6 @@ discrepancyReference.change.hidden = the Declaration Goods Reference
 
 testPage.title = testPage
 testPage.heading = testPage
+
+testingTest.title = testingTest
+testingTest.heading = testingTest
