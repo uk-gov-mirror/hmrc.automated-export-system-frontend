@@ -23,7 +23,7 @@ import uk.gov.hmrc.automatedexportsystemfrontend.models.{CheckMode, NormalMode, 
 import uk.gov.hmrc.automatedexportsystemfrontend.navigation.Navigator
 import uk.gov.hmrc.automatedexportsystemfrontend.pages.Page
 import uk.gov.hmrc.automatedexportsystemfrontend.pages.create.*
-import uk.gov.hmrc.automatedexportsystemfrontend.queries.DiscrepancySeals
+import uk.gov.hmrc.automatedexportsystemfrontend.queries.{DiscrepancySeals, DiscrepancyTransportDoc}
 import uk.gov.hmrc.automatedexportsystemfrontend.pages.create.DiscrepancyReferencePage.reads
 
 class CreateNavigator extends Navigator {
@@ -138,12 +138,15 @@ class CreateNavigator extends Navigator {
       case _    => createRoute.CYASubmissionController.onPageLoad()
     }
 
-  private def discrepancyTransportDocRoute(answers: UserAnswers): Call =
-    answers.get(DiscrepancyGoodsPage) match {
-      case None => createRoute.DiscrepancyGoodsController.onPageLoad(CheckMode)
-      case _ => createRoute.CYASubmissionController.onPageLoad()
+  private def discrepancyTransportDocRoute(answers: UserAnswers, docIndex: Int): Call =
+    answers.get(DiscrepancyTransportDocPage(docIndex)) match {
+      case Some(_) => createRoute.TransportDocCYAController.onPageLoad(docIndex, NormalMode)
+      case None if hasExistingTransportDocs(answers) =>
+        problemRoute.JourneyRecoveryController.onPageLoad() // TODO: replace with transport doc list page
+      case None => createRoute.DiscrepancyGoodsController.onPageLoad(NormalMode)
+      case _    => createRoute.CYASubmissionController.onPageLoad()
     }
-  
+
   private def discrepancyTransportDocCheckRoute(answers: UserAnswers): Call =
     answers.get(DiscrepancyGoodsPage) match {
       case None => createRoute.DiscrepancyGoodsController.onPageLoad(CheckMode)
@@ -167,4 +170,7 @@ class CreateNavigator extends Navigator {
 
   private def hasExistingSeals(userAnswers: UserAnswers): Boolean =
     DiscrepancySeals.count(userAnswers) > 0
+
+  private def hasExistingTransportDocs(userAnswers: UserAnswers): Boolean =
+    DiscrepancyTransportDoc.count(userAnswers) > 0
 }

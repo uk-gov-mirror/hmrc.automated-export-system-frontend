@@ -23,7 +23,7 @@ import uk.gov.hmrc.automatedexportsystemfrontend.pages.create.DiscrepancyTranspo
 import scala.util.Try
 
 case object DiscrepancyTransportDoc extends Gettable[List[DocumentDetails]] with Settable[List[DocumentDetails]] {
-  override def path: JsPath = JsPath \ "standard" \ "discrepancyPacking"
+  override def path: JsPath = JsPath \ "standard" \ "discrepancyTransportDoc"
 
   val maxTransportDocuments: Int = 99
 

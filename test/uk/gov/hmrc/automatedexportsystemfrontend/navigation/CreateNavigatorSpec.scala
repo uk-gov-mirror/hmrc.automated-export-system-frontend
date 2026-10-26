@@ -136,7 +136,7 @@ class CreateNavigatorSpec extends SpecBase {
         }
       }
 
-      //TODO add navigation when empty
+      // TODO add navigation when empty
 
       "navigate from DiscrepancyGoodsPage" - {
         "to DiscrepancyPackingPage" in {

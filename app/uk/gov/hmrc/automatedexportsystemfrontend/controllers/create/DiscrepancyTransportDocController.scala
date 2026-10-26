@@ -63,7 +63,13 @@ class DiscrepancyTransportDocController @Inject() (
         formWithErrors => Future.successful(BadRequest(view(formWithErrors, docIndex, mode))),
         value =>
           for {
-            updatedAnswers <- Future.fromTry(request.userAnswers.set(DiscrepancyTransportDocPage(docIndex), value))
+            updatedAnswers <- value match {
+              case v if v.documentType.isDefined || v.referenceNumber.isDefined =>
+                Future
+                  .fromTry(request.userAnswers.set(DiscrepancyTransportDocPage(docIndex), value))
+              case _ =>
+                Future.fromTry(request.userAnswers.remove(DiscrepancyTransportDocPage(docIndex)))
+            }
             _ <- sessionRepository.set(updatedAnswers)
           } yield Redirect(createNavigator.nextPage(DiscrepancyTransportDocPage(docIndex), mode, updatedAnswers))
       )
