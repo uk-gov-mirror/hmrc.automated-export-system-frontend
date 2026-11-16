@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package models
+package uk.gov.hmrc.automatedexportsystemfrontend.models.IE507a
 
+import models.WhatDoYouWantToDo
 import play.api.i18n.Messages
 import uk.gov.hmrc.govukfrontend.views.Aliases.Text
 import uk.gov.hmrc.govukfrontend.views.viewmodels.radios.RadioItem

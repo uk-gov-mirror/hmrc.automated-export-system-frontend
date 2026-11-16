@@ -3,6 +3,7 @@ package forms
 import forms.behaviours.OptionFieldBehaviours
 import uk.gov.hmrc.automatedexportsystemfrontend.models.WhatDoYouWantToDo
 import play.api.data.FormError
+import uk.gov.hmrc.automatedexportsystemfrontend.forms.create.WhatDoYouWantToDoFormProvider
 
 class WhatDoYouWantToDoFormProviderSpec extends OptionFieldBehaviours {
 

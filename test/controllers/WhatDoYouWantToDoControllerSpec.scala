@@ -1,7 +1,6 @@
 package controllers
 
 import base.SpecBase
-import forms.WhatDoYouWantToDoFormProvider
 import uk.gov.hmrc.automatedexportsystemfrontend.models.{NormalMode, UserAnswers, WhatDoYouWantToDo}
 import navigation.{FakeNavigator, Navigator}
 import org.mockito.ArgumentMatchers.any
@@ -12,6 +11,7 @@ import play.api.inject.bind
 import play.api.mvc.Call
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
+import uk.gov.hmrc.automatedexportsystemfrontend.forms.create.WhatDoYouWantToDoFormProvider
 import repositories.SessionRepository
 import views.html.WhatDoYouWantToDoView
 

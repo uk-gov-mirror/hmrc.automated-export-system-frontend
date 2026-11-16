@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package viewmodels.checkAnswers
+package uk.gov.hmrc.automatedexportsystemfrontend.viewmodels.checkAnswers.Create
 
 import controllers.routes
-import uk.gov.hmrc.automatedexportsystemfrontend.models.{CheckMode, UserAnswers}
 import pages.WhatDoYouWantToDoPage
 import play.api.i18n.Messages
 import play.twirl.api.HtmlFormat
+import uk.gov.hmrc.automatedexportsystemfrontend.models.{CheckMode, UserAnswers}
 import uk.gov.hmrc.govukfrontend.views.viewmodels.content.HtmlContent
 import uk.gov.hmrc.govukfrontend.views.viewmodels.summarylist.SummaryListRow
 
